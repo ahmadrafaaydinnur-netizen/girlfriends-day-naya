@@ -3,122 +3,222 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Happy Girlfriend Day, Denaya!</title>
+    <title>For My Greatest Girlfriend</title>
     <style>
-        /* Mengambil font yang cantik dari Google Fonts */
-        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Poppins:wght@300;400;600&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Quicksand:wght@400;600&display=swap');
 
         body {
             margin: 0;
             padding: 0;
-            background-color: #ffe6f0; /* Warna latar belakang pink pastel */
+            background: linear-gradient(135deg, #f3e8ff, #e9d5ff, #d8b4fe);
             height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
             overflow: hidden;
-            font-family: 'Poppins', sans-serif;
+            font-family: 'Quicksand', sans-serif;
         }
 
+        /* Halaman Sampul untuk memicu lagu */
+        #overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: linear-gradient(135deg, #f3e8ff, #e9d5ff, #d8b4fe);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 100;
+            transition: opacity 1s ease, visibility 1s;
+        }
+
+        .btn-buka {
+            background-color: #9333ea;
+            color: white;
+            font-family: 'Quicksand', sans-serif;
+            font-size: 1.2rem;
+            font-weight: 600;
+            padding: 15px 35px;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 10px 25px rgba(147, 51, 234, 0.4);
+            transition: transform 0.3s ease, background-color 0.3s;
+            animation: pulse 2s infinite;
+        }
+
+        .btn-buka:hover {
+            background-color: #7e22ce;
+            transform: scale(1.05);
+        }
+
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(147, 51, 234, 0.7); }
+            70% { box-shadow: 0 0 0 15px rgba(147, 51, 234, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(147, 51, 234, 0); }
+        }
+
+        /* Desain Kartu Utama */
         .card {
-            background: rgba(255, 255, 255, 0.9);
-            padding: 40px;
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(255, 182, 193, 0.6);
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            padding: 45px 30px;
+            border-radius: 25px;
+            box-shadow: 0 15px 35px rgba(147, 51, 234, 0.2);
             text-align: center;
             max-width: 90%;
-            width: 400px;
+            width: 420px;
             z-index: 10;
-            border: 2px solid #ffb6c1;
+            border: 2px solid #d8b4fe;
+            position: relative;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 1.5s ease, transform 1.5s ease;
+        }
+
+        .card.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .card::before {
+            content: '🌸';
+            position: absolute;
+            top: -20px;
+            left: -20px;
+            font-size: 3rem;
+            filter: drop-shadow(2px 4px 6px rgba(0,0,0,0.1));
+        }
+        .card::after {
+            content: '💜';
+            position: absolute;
+            bottom: -20px;
+            right: -20px;
+            font-size: 3rem;
+            filter: drop-shadow(2px 4px 6px rgba(0,0,0,0.1));
         }
 
         h1 {
             font-family: 'Dancing Script', cursive;
-            color: #d81b60;
-            font-size: 2.8rem;
+            color: #6b21a8;
+            font-size: 2.2rem;
             margin-bottom: 5px;
             margin-top: 0;
         }
 
-        .date {
-            font-size: 0.9rem;
-            color: #888;
-            margin-bottom: 25px;
-            letter-spacing: 1px;
+        .name {
+            font-family: 'Dancing Script', cursive;
+            font-weight: 700;
+            color: #9333ea;
+            font-size: 2.8rem;
+            display: block;
+            margin: 10px 0 25px 0;
+            text-shadow: 2px 2px 4px rgba(147, 51, 234, 0.15);
         }
 
         p {
-            color: #555;
-            line-height: 1.6;
-            font-size: 1.1rem;
+            color: #4a4a4a;
+            line-height: 1.7;
+            font-size: 1.05rem;
             margin: 10px 0;
         }
 
-        .name {
+        .highlight {
             font-weight: 600;
-            color: #d81b60;
-            font-size: 1.4rem;
-            background: #ffe6f0;
-            display: inline-block;
-            padding: 5px 15px;
-            border-radius: 15px;
-            margin: 10px 0;
+            color: #7e22ce;
         }
 
-        /* Animasi Bunga Jatuh */
+        /* Animasi Bunga */
         .flower {
             position: absolute;
             top: -10%;
             user-select: none;
-            animation: fall linear infinite;
+            animation: fall linear infinite, sway ease-in-out infinite alternate;
             z-index: 1;
+            filter: drop-shadow(0px 5px 5px rgba(0, 0, 0, 0.1));
         }
 
         @keyframes fall {
-            0% {
-                transform: translateY(-10vh) rotate(0deg);
-            }
-            100% {
-                transform: translateY(110vh) rotate(360deg);
-            }
+            0% { top: -10%; }
+            100% { top: 110%; }
+        }
+
+        @keyframes sway {
+            0% { transform: translateX(0px) rotate(0deg); }
+            50% { transform: translateX(25px) rotate(180deg); }
+            100% { transform: translateX(-25px) rotate(360deg); }
         }
     </style>
 </head>
 <body>
 
-    <div class="card">
-        <h1>Happy Girlfriend Day!</h1>
-        <div class="date">1 Agustus 2026</div>
-        <p>Teruntuk wanita yang paling spesial,</p>
-        <div class="name">Denaya Hana Almira 🌸</div>
-        <p>Terima kasih sudah menjadi alasan di balik setiap senyumku. Semoga hari-harimu selalu seindah dan secerah bunga-bunga ini. I love you!</p>
+    <!-- Audio Element -->
+    <audio id="bgMusic" loop>
+        <source src="lagu.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- Overlay Awal -->
+    <div id="overlay">
+        <button class="btn-buka" onclick="bukaPesan()">Buka Pesan 💌</button>
+    </div>
+
+    <!-- Kartu Ucapan -->
+    <div class="card" id="mainCard">
+        <h1>For My Greatest Girlfriend,</h1>
+        <span class="name">Denaya Hana Almira</span>
+        
+        <p>Terima kasih udah jadi pacar aku selama ini, udah 1 tahun lebih kan? 💜</p>
+        <p>Pokoknya jangan bosen-bosen yah sama aku, cantik.. Aku berharap kita bisa sama-sama sampai kapan pun terus.</p>
+        <p class="highlight">Wish you all the best cantikku, cintaku, sayangku ❤️</p>
     </div>
 
     <script>
-        // Script untuk membuat efek bunga berjatuhan
-        function createFlower() {
-            const flowers = ['🌸', '🌺', '🌷', '🌻', '🌼', '🌹'];
-            const flower = document.createElement('div');
-            flower.classList.add('flower');
-            
-            // Memilih jenis bunga secara acak
-            flower.innerText = flowers[Math.floor(Math.random() * flowers.length)];
-            
-            // Menentukan posisi horizontal, ukuran, dan kecepatan jatuh secara acak
-            flower.style.left = Math.random() * 100 + 'vw';
-            flower.style.animationDuration = Math.random() * 3 + 4 + 's'; // Antara 4 hingga 7 detik
-            flower.style.fontSize = Math.random() * 15 + 15 + 'px'; // Antara 15px hingga 30px
-            
-            document.body.appendChild(flower);
+        // Fungsi untuk membuka pesan dan memutar lagu
+        function bukaPesan() {
+            // Mainkan lagu
+            let audio = document.getElementById("bgMusic");
+            audio.play();
 
-            // Menghapus bunga setelah melewati layar agar tidak memberatkan browser
+            // Sembunyikan overlay
+            let overlay = document.getElementById("overlay");
+            overlay.style.opacity = "0";
             setTimeout(() => {
-                flower.remove();
-            }, 7000);
+                overlay.style.visibility = "hidden";
+            }, 1000);
+
+            // Munculkan kartu utama
+            let card = document.getElementById("mainCard");
+            setTimeout(() => {
+                card.classList.add("show");
+                mulaiBunga(); // Panggil fungsi bunga setelah kartu terbuka
+            }, 500);
         }
 
-        // Memunculkan bunga baru setiap 300 milidetik
-        setInterval(createFlower, 300);
+        // Script animasi bunga
+        function mulaiBunga() {
+            function createFlower() {
+                const flowers = ['🌸', '🌺', '🌷', '🏵️', '💐', '💜', '✨'];
+                const flower = document.createElement('div');
+                flower.classList.add('flower');
+                
+                flower.innerText = flowers[Math.floor(Math.random() * flowers.length)];
+                flower.style.left = Math.random() * 100 + 'vw';
+                
+                const fallDuration = Math.random() * 5 + 6; 
+                flower.style.animationDuration = `${fallDuration}s, ${Math.random() * 2 + 2}s`; 
+                flower.style.fontSize = Math.random() * 15 + 15 + 'px'; 
+                
+                document.body.appendChild(flower);
+
+                setTimeout(() => {
+                    flower.remove();
+                }, fallDuration * 1000); 
+            }
+
+            setInterval(createFlower, 400);
+        }
     </script>
 </body>
 </html>
