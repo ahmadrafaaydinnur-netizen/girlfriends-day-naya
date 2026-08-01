@@ -83,14 +83,14 @@
             transition: width 0.3s, height 0.3s;
         }
 
-        /* Layar Pembuka (Amplop) */
+        /* Layar Pembuka (Amplop & Hitung Mundur 3,2,1) */
         #overlay {
             position: fixed;
             top: 0;
             left: 0;
             width: 100vw;
             height: 100vh;
-            background: rgba(10, 0, 26, 0.9);
+            background: rgba(10, 0, 26, 0.92);
             backdrop-filter: blur(20px);
             display: flex;
             justify-content: center;
@@ -125,6 +125,21 @@
             text-transform: uppercase;
         }
 
+        /* Animasi Angka Hitung Mundur 3, 2, 1 */
+        #countdownDisplay {
+            font-family: 'Cinzel', serif;
+            font-size: 6rem;
+            color: #ffffff;
+            text-shadow: 0 0 20px #c77dff, 0 0 40px #9d4edd;
+            display: none;
+            animation: scaleNum 0.9s ease infinite alternate;
+        }
+
+        @keyframes scaleNum {
+            0% { transform: scale(1); opacity: 0.7; }
+            100% { transform: scale(1.2); opacity: 1; }
+        }
+
         @keyframes floatEnv {
             0%, 100% { transform: translateY(0) rotate(0deg); }
             50% { transform: translateY(-15px) rotate(3deg); }
@@ -151,14 +166,14 @@
             border: 1px solid rgba(255, 255, 255, 0.12);
             border-top: 1px solid rgba(224, 170, 255, 0.6);
             border-left: 1px solid rgba(224, 170, 255, 0.6);
-            padding: 35px 30px;
+            padding: 30px;
             border-radius: 35px;
             box-shadow: 0 30px 60px rgba(0, 0, 0, 0.6),
                         inset 0 0 40px rgba(199, 125, 255, 0.15);
             text-align: center;
             max-width: 90%;
             width: 620px;
-            max-height: 82vh;
+            max-height: 85vh;
             display: flex;
             flex-direction: column;
             transform-style: preserve-3d;
@@ -177,7 +192,7 @@
         .card-scrollable {
             overflow-y: auto;
             padding-right: 12px;
-            margin-top: 10px;
+            margin-top: 5px;
             margin-bottom: 10px;
         }
 
@@ -196,7 +211,6 @@
             box-shadow: 0 0 10px #c77dff;
         }
 
-        /* Elemen 3D Pop-out */
         .float-3d {
             transform: translateZ(40px);
             transition: transform 0.3s ease;
@@ -209,50 +223,71 @@
 
         .pre-title {
             font-family: 'Cinzel', serif;
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             letter-spacing: 4px;
             color: #d8b4fe;
-            margin-bottom: 3px;
+            margin-bottom: 2px;
             opacity: 0;
         }
 
         .main-name {
             font-family: 'Great Vibes', cursive;
-            font-size: 3.8rem;
-            margin: 5px 0 10px 0;
+            font-size: 3.3rem;
+            margin: 2px 0 2px 0;
             color: #ffffff;
             text-shadow: 0 0 10px #c77dff, 0 0 20px #9d4edd, 0 0 40px #5a189a;
             opacity: 0;
         }
 
-        /* Counter Box */
-        .counter-box {
+        /* Badge Tanggal Lahir & Jam */
+        .birthdate-badge {
+            font-family: 'Cinzel', serif;
+            font-size: 0.75rem;
+            letter-spacing: 2px;
+            color: #ffd6ff;
+            background: rgba(199, 125, 255, 0.12);
+            border: 1px solid rgba(224, 170, 255, 0.3);
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 15px;
+            margin-bottom: 8px;
+            opacity: 0;
+        }
+
+        .time-widget {
             background: rgba(199, 125, 255, 0.08);
             border: 1px solid rgba(224, 170, 255, 0.25);
-            border-radius: 15px;
-            padding: 10px;
-            margin: 10px 0 15px 0;
+            border-radius: 12px;
+            padding: 6px 12px;
+            margin: 4px 0 8px 0;
             display: flex;
-            justify-content: space-around;
-            font-size: 0.85rem;
-            color: #e0aaff;
+            justify-content: space-between;
+            align-items: center;
             opacity: 0;
             transform: translateY(15px);
         }
 
-        .counter-item span {
-            font-weight: 600;
-            color: #fff;
-            font-size: 1rem;
+        .time-greeting {
+            font-size: 0.8rem;
+            color: #ffd6ff;
+            font-weight: 500;
+        }
+
+        .live-clock {
+            font-family: 'Cinzel', serif;
+            font-size: 0.9rem;
+            letter-spacing: 2px;
+            color: #ffffff;
+            font-weight: 700;
         }
 
         .body-text p {
             font-family: 'Montserrat', sans-serif;
             font-weight: 300;
-            font-size: 1rem;
-            line-height: 1.7;
+            font-size: 0.92rem;
+            line-height: 1.65;
             color: #f8f9fa;
-            margin: 15px 0;
+            margin: 10px 0;
             text-align: justify;
             opacity: 0;
             transform: translateY(15px);
@@ -261,21 +296,21 @@
         .highlight-wish {
             font-weight: 500;
             color: #e0aaff;
-            font-size: 1.1rem;
+            font-size: 1rem;
             display: block;
-            margin-top: 20px;
-            padding-top: 15px;
+            margin-top: 12px;
+            padding-top: 10px;
             border-top: 1px solid rgba(224, 170, 255, 0.2);
             text-align: center;
             opacity: 0;
         }
 
-        /* Interactive Secret Notes */
+        /* Tombol Pesan Rahasia */
         .secret-notes-container {
-            margin-top: 20px;
+            margin-top: 12px;
             display: flex;
             justify-content: center;
-            gap: 8px;
+            gap: 6px;
             flex-wrap: wrap;
             opacity: 0;
         }
@@ -284,9 +319,9 @@
             background: rgba(199, 125, 255, 0.15);
             border: 1px solid rgba(224, 170, 255, 0.4);
             color: #e0aaff;
-            padding: 7px 14px;
+            padding: 6px 12px;
             border-radius: 20px;
-            font-size: 0.8rem;
+            font-size: 0.75rem;
             cursor: pointer;
             transition: all 0.3s ease;
             backdrop-filter: blur(5px);
@@ -299,11 +334,11 @@
         }
 
         .note-display {
-            margin-top: 12px;
-            font-size: 0.9rem;
+            margin-top: 8px;
+            font-size: 0.82rem;
             color: #ffd6ff;
             font-style: italic;
-            min-height: 35px;
+            min-height: 28px;
             text-align: center;
             transition: opacity 0.5s ease;
         }
@@ -385,16 +420,17 @@
     <canvas id="visualizer"></canvas>
     <div id="cursor-glow"></div>
 
-    <!-- Pastikan file musik bernama music.mp3 atau sesuai file kamu -->
     <audio id="bgMusic" loop crossorigin="anonymous">
         <source src="music.mp3" type="audio/mpeg">
     </audio>
 
+    <!-- Overlay Amplop & Hitung Mundur 3,2,1 -->
     <div id="overlay">
-        <div class="envelope-wrapper" onclick="startExperience(event)">
+        <div class="envelope-wrapper" id="envWrapper" onclick="startCountdown()">
             <div class="envelope-icon">💌</div>
-            <div class="envelope-text">Buka Pengalaman Spesial</div>
+            <div class="envelope-text">Buka Surat Cinta</div>
         </div>
+        <div id="countdownDisplay">3</div>
     </div>
 
     <div class="flower-layer" id="flowerLayer"></div>
@@ -404,30 +440,29 @@
             
             <div class="pre-title float-3d" id="t1">For My Greatest Girlfriend</div>
             <div class="main-name float-3d-high" id="t2">Denaya Hana Almira</div>
+            <div class="birthdate-badge float-3d" id="t3">Born on 05 Desember 2008 🌸</div>
             
-            <!-- Live Counter Waktu Bersama -->
-            <div class="counter-box float-3d" id="t3">
-                <div class="counter-item"><span id="days">0</span><br>Hari</div>
-                <div class="counter-item"><span id="hours">0</span><br>Jam</div>
-                <div class="counter-item"><span id="minutes">0</span><br>Menit</div>
-                <div class="counter-item"><span id="seconds">0</span><br>Detik</div>
+            <!-- Live Time & Greeting Widget -->
+            <div class="time-widget float-3d" id="t4">
+                <div class="time-greeting" id="timeGreeting">Halo Cantikku</div>
+                <div class="live-clock" id="liveClock">00:00:00</div>
             </div>
 
             <div class="card-scrollable body-text float-3d">
-                <p id="t4">
-                    Halo cantikku, selamat ya... kita sudah melewati perjalanan indah ini selama lebih dari 1 tahun bersama. Waktu terasa begitu cepat berlalu karena setiap detiknya sangat berharga bersamamu. 💜
-                </p>
                 <p id="t5">
-                    Terimakasih banyak sudah selalu sabar menghadapi sifatku, selalu mengerti saat aku lelah, dan menjadi tempat berpulang paling nyaman di setiap hariku.
+                    Halo cantikku, selamat ya... kita sudah melewati perjalanan indah ini bersama. Waktu terasa begitu cepat berlalu karena setiap detiknya sangat berharga bersamamu sejak hari pertama kita bersama. 💜
                 </p>
                 <p id="t6">
-                    Aku sadar hubungan kita tidak selalu sempurna, tapi justru dari setiap proses itulah aku yakin bahwa memilihmu adalah keputusan terbaik dalam hidupku. Kamu adalah kebahagiaan terbesarku.
+                    Terimakasih banyak sudah selalu sabar menghadapi sifatku, selalu mengerti saat aku lelah, dan menjadi tempat berpulang paling nyaman di setiap hariku.
                 </p>
                 <p id="t7">
-                    Jangan pernah bosan denganku ya cantik. Semoga kita terus melangkah bergandengan tangan, saling menguatkan, dan mewujudkan semua mimpi kita bersama.
+                    Aku sadar hubungan kita tidak selalu sempurna, tapi justru dari setiap proses itulah aku yakin bahwa memilihmu adalah keputusan terbaik dalam hidupku. Kamu adalah kebahagiaan terbesarku.
+                </p>
+                <p id="t8">
+                    Jangan pernah bosan denganku ya cantik. Semoga kita terus melangkah bergandengan tangan, saling menguatkan, dan mewujudkan semua mimpi kita bersama sampai kapanpun.
                 </p>
 
-                <div class="secret-notes-container" id="t8">
+                <div class="secret-notes-container" id="t9">
                     <button class="note-btn" onclick="revealNote(1)">✨ Senyumanmu</button>
                     <button class="note-btn" onclick="revealNote(2)">🌙 Janji Cintaku</button>
                     <button class="note-btn" onclick="revealNote(3)">🌷 Rumahku</button>
@@ -437,7 +472,7 @@
                     (Klik tombol di atas untuk membuka pesan rahasia)
                 </div>
 
-                <div class="highlight-wish float-3d" id="t9">
+                <div class="highlight-wish float-3d" id="t10">
                     Wish you all the best cantikku, cintaku, sayangku. I love you endlessly! <span class="heart-beat">❤️</span>
                 </div>
             </div>
@@ -485,27 +520,34 @@
             card.style.transform = `rotateY(0deg) rotateX(0deg)`;
         });
 
-        // 4. Hubungan Counter (Ubah tanggal mulai jadian di sini: Tahun, Bulan (0-11), Tanggal)
-        const startDate = new Date(2025, 0, 1); // Contoh: 1 Januari 2025
-        function updateCounter() {
+        // 4. Live Clock & Dynamic Greeting
+        function updateLiveClock() {
             const now = new Date();
-            const diff = now - startDate;
-            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
-            const minutes = Math.floor((diff / 1000 / 60) % 60);
-            const seconds = Math.floor((diff / 1000) % 60);
+            const hours = String(now.getHours()).padStart(2, '0');
+            const minutes = String(now.getMinutes()).padStart(2, '0');
+            const seconds = String(now.getSeconds()).padStart(2, '0');
+            document.getElementById('liveClock').innerText = `${hours}:${minutes}:${seconds}`;
 
-            document.getElementById('days').innerText = days >= 0 ? days : 0;
-            document.getElementById('hours').innerText = hours;
-            document.getElementById('minutes').innerText = minutes;
-            document.getElementById('seconds').innerText = seconds;
+            const h = now.getHours();
+            let greeting = "Halo Cantikku";
+            if (h >= 4 && h < 11) greeting = "Selamat Pagi, Cantik 🌅";
+            else if (h >= 11 && h < 15) greeting = "Selamat Siang, Sayang ☀️";
+            else if (h >= 15 && h < 18) greeting = "Selamat Sore, Manis ☕";
+            else greeting = "Selamat Malam, Denaya 🌙";
+
+            document.getElementById('timeGreeting').innerText = greeting;
         }
-        setInterval(updateCounter, 1000);
-        updateCounter();
+        setInterval(updateLiveClock, 1000);
+        updateLiveClock();
 
-        // 5. Audio & Visualizer Engine
+        // 5. Audio & Visualizer Engine dengan Error Debugger
         let audio = document.getElementById("bgMusic");
         audio.volume = 0.5;
+
+        audio.addEventListener('error', (e) => {
+            console.error("Gagal memuat file musik! Pastikan file bernama 'music.mp3' ada di satu folder yang sama.", e);
+        });
+
         let audioCtx, analyser, source, canvas, ctx;
         let isVisualizerInitialized = false;
 
@@ -527,7 +569,7 @@
                 isVisualizerInitialized = true;
                 drawVisualizer();
             } catch(e) {
-                console.log("Visualizer initialized via fallback");
+                console.log("Visualizer fallback active");
             }
         }
 
@@ -551,27 +593,48 @@
             }
         }
 
-        // 6. Start Experience
-        function startExperience(event) {
+        // 6. Hitung Mundur 3, 2, 1 (Musik langsung diputar saat amplop diklik)
+        function startCountdown() {
             initVisualizer();
-            audio.play().catch(e => console.log("Audio waiting interaction"));
+            audio.play().then(() => {
+                console.log("Musik berhasil diputar!");
+            }).catch(err => {
+                console.warn("Audio play diblokir atau file tidak ditemukan:", err);
+            });
 
-            let xPos = event.clientX / window.innerWidth;
-            let yPos = event.clientY / window.innerHeight;
-            
+            document.getElementById('envWrapper').style.display = 'none';
+            const cdDisplay = document.getElementById('countdownDisplay');
+            cdDisplay.style.display = 'block';
+
+            let count = 3;
+            cdDisplay.innerText = count;
+
+            let timer = setInterval(() => {
+                count--;
+                if (count > 0) {
+                    cdDisplay.innerText = count;
+                } else if (count === 0) {
+                    cdDisplay.innerText = "❤️";
+                } else {
+                    clearInterval(timer);
+                    triggerExperience();
+                }
+            }, 1000);
+        }
+
+        // 7. Trigger Pengalaman Utama Setelah Hitung Mundur
+        function triggerExperience() {
             var defaults = { spread: 360, ticks: 100, gravity: 0.5, decay: 0.94, startVelocity: 30, shapes: ['heart'], colors: ['#ff4d6d', '#c77dff', '#e0aaff'] };
-            
-            confetti({ ...defaults, particleCount: 80, origin: { x: xPos, y: yPos } });
-            setTimeout(() => confetti({ ...defaults, particleCount: 50, origin: { x: xPos, y: yPos } }), 200);
+            confetti({ ...defaults, particleCount: 100, origin: { x: 0.5, y: 0.5 } });
 
             const overlay = document.getElementById('overlay');
             overlay.style.opacity = '0';
             setTimeout(() => overlay.style.display = 'none', 1000);
 
-            setTimeout(() => { card.classList.add('revealed'); }, 500);
+            setTimeout(() => { card.classList.add('revealed'); }, 300);
 
-            const textIds = ['t1', 't2', 't3', 't4', 't5', 't6', 't7', 't8', 't9'];
-            const delays = [500, 1000, 1600, 2400, 3400, 4400, 5400, 6400, 7200];
+            const textIds = ['t1', 't2', 't3', 't4', 't5', 't6', 't7', 't8', 't9', 't10'];
+            const delays = [300, 700, 1100, 1500, 2100, 3100, 4100, 5100, 6100, 6900];
             
             textIds.forEach((id, index) => {
                 setTimeout(() => {
@@ -582,10 +645,10 @@
             setTimeout(() => {
                 document.getElementById('audioCtrl').style.opacity = '1';
                 startFallingMagic();
-            }, 5500);
+            }, 5000);
         }
 
-        // 7. Interactive Secret Notes
+        // 8. Interactive Secret Notes
         function revealNote(num) {
             const display = document.getElementById('noteDisplay');
             display.style.opacity = '0';
@@ -624,7 +687,7 @@
             }
         }
 
-        // 8. Bunga & Simbol Jatuh Parallax
+        // 9. Bunga & Simbol Jatuh Parallax
         function startFallingMagic() {
             const container = document.getElementById('flowerLayer');
             const items = ['🌸', '✨', '💜', '🦋', '🤍'];
